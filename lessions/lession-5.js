@@ -29,6 +29,6 @@ fs.writeFile("readme.txt", data + " this is modified data", {
         flag: 'a'
 }, (err) => {
         if (err) {
-                console.error("Got error", err);
+                   console.error("Got error", err);
         }
 });
