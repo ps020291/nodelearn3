@@ -1,7 +1,7 @@
-
+process.title="Big file reader";
 var fs = require("fs"),
 path = require("path");
-var read = fs.createReadStream("README.md1","utf-8");
+var read = fs.createReadStream("bigfile.txt","utf-8");
 
 read.on("open",function(){
         console.log('File open for reading');
@@ -9,7 +9,7 @@ read.on("open",function(){
 });
 
 read.on("data",function(data){
-        console.log("received",data);
+        console.log("received",data.length);
 });
 
 read.on('close',function(){
