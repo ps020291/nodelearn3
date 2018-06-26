@@ -1,0 +1,17 @@
+{% set title = 'Search page' %}
+
+{% extends "layout/base.html" %}
+{% block body %}
+  
+  <h1>Your searched for: {{term}}</h1>
+
+  <ul>
+{% for item in result %}
+ <li>{{item}}</li>
+{% endfor %}
+</ul>
+
+
+ 
+{% endblock %}
+

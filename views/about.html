@@ -1,12 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>About Us</title>
-</head>
-<body>
-    About us
-</body>
-</html>
+{% set title = 'About page' %}
+{% set test = 'test' %}
+
+{% extends "layout/base.html" %}
+
+{% block body %}
+    <h1>About us</h1>
+    {{test}}
+{% endblock %}
+
+{% block details %}
+{{ super() }}
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo sequi aliquam eum vitae, itaque delectus, aut atque ullam in corrupti quidem beatae veniam cum iste tempore! Ipsam blanditiis quae perspiciatis?</p>
+{% endblock %}
