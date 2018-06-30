@@ -2,6 +2,7 @@ var express = require('express');
 var nunjucks = require('nunjucks');
 var path = require('path');
 var items = require("./items");
+var features = require('./features/index');
 
 // initilizing the express and storing it in app variable.
 var app = express();
@@ -10,6 +11,11 @@ nunjucks.configure('views', {
     express: app,
     noCache: true
 });
+
+// /api/student/create
+// http:localhost:3000/api/student/create
+// http:localhost:3000/member/create
+// http:localhost:3000/report/monthly
 
 // serving static resources like css, images
 app.use("/", express.static(path.join(__dirname, '../public')));
@@ -73,6 +79,12 @@ app.get("/api", (request, response) => {
     });
 });
 
+
+// mounting features routes
+
+features.bindFeatureRoutes(app);
+
+// no routing after this endpoint
 app.get("*", (req, res) => {
     res.send("Page not found!")
 });
