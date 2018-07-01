@@ -1,13 +1,22 @@
+var pgdb = require('../../db/pgdb');
+
+
 module.exports = {
     search:search,
     create:create
 }
 
-
-
-
 function search(req,res){
-    res.json({data:["student1"]});
+
+    pgdb.query('select * from ngnotes_users',(err,users)=>{
+       if(err){
+           res.json({status:false,msg:err.message});
+       }else{
+        res.json({data:users.rows});
+       }
+       
+
+    });
 }
 
 function create(req,res){
