@@ -1,8 +1,10 @@
 var express = require('express');
 var nunjucks = require('nunjucks');
 var path = require('path');
+var bodyParser = require('body-parser');
 var items = require("./items");
 var features = require('./features/index');
+var mongoDBConnect = require('./mdb').mongoDBConnect;
 
 // initilizing the express and storing it in app variable.
 var app = express();
@@ -12,10 +14,9 @@ nunjucks.configure('views', {
     noCache: true
 });
 
-// /api/student/create
-// http:localhost:3000/api/student/create
-// http:localhost:3000/member/create
-// http:localhost:3000/report/monthly
+mongoDBConnect();
+
+app.use(bodyParser.json());
 
 // serving static resources like css, images
 app.use("/", express.static(path.join(__dirname, '../public')));
@@ -41,7 +42,7 @@ app.get("/", (request, response) => {
 
 
 app.get("/about", (request, response) => {
-    response.render('about.html');
+    response.render('about.html',{description:'Test content'});
 });
 
 /**

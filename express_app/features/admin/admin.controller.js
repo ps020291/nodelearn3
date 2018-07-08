@@ -1,7 +1,16 @@
 var pgdb = require('../../db/pgdb');
+
+var {
+    Batch,
+    Student
+} = require('../../mdb').Collections;
+
+
 module.exports = {
     search: search,
     newGroup: newGroup,
+    createBatch:createBatch,
+    registerStudent:registerStudent
 
 }
 
@@ -38,4 +47,22 @@ function newGroup(req, res) {
             });
         }
     });
+}
+
+
+function createBatch(req,res) {
+    var body = req.body;
+    body.active = true;
+    body.startDate = new Date();
+    
+    var batch = new Batch(body);
+    batch.save((err)=>{
+        if(err) res.json({status:false,msg:err.message});
+        else {
+            res.json({status:true,data:batch});
+        }
+    })
+}
+function registerStudent(req,res){
+
 }
